@@ -1,0 +1,219 @@
+@import url(http://fonts.googleapis.com/css?family=Ubuntu);
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: helvetica, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: normal;
+}
+
+a {
+    color: #12c064;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #00a74f;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+#formformat {
+    padding: 10px;
+    overflow: auto;
+}
+
+th {
+    text-align: left;
+    vertical-align: top;
+}
+
+.img-txt {
+    text-align: center;
+    width: 50px;
+}
+
+.img-preview {
+    width: 50px;
+}
+
+#header {
+    padding: 10px 100px;
+    font-size: 14px;
+    background: #12c064;
+    color: #fff;
+    border-bottom: 4px solid #1cdf78;
+    overflow: auto;
+}
+
+#header .logo {
+    font-family: 'Muli', sans-serif;
+    float: left;
+    color: #f3f7cc;
+    font-size: 18px;
+    margin-right: 10%;
+}
+
+#header ul.menu {
+    list-style: none;
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+
+#header ul.menu li {
+    float: left;
+    padding: 4px 10px;
+}
+
+#header ul.menu li.selected a, #header ul.menu li.selected a:hover {
+    color: #1b6d32;
+    font-weight: bold;
+}
+
+#header a {
+    color: #f3f7cc;
+}
+
+#header a:hover {
+    color: #fff;
+}
+
+#header .image {
+    float: right;
+}
+
+#header .user {
+    float: right;
+    padding-top: 4px;
+}
+
+#footer {
+    text-align: right;
+    border-top: 1px #cccccc solid;
+    padding-top: 5px;
+    padding-right: 10px;
+}
+
+#footer p {
+    font-size: smaller;
+    font-style: italic;
+}
+
+#subheader {
+    color: #1b6d32;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    border-bottom: 1px solid #1cdf78;
+    overflow: auto;
+
+}
+
+#subheader .refname {
+    float: left;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#subheader p {
+    float: left;
+    font-size: 14px;
+    padding-left: 10px;
+}
+
+#subheader .separator {
+    float: left;
+    font-size: 14px;
+    padding-left: 100px;
+}
+
+#subheader button {
+    float: left;
+    font-size: 14px;
+    color: #fff;
+    background: #1cdf78;
+    border-radius: 4px;
+    box-shadow: 1px 1px 1px 2px rgba(0, 120, 0, 0.5);
+    border: 0;
+    margin-left: 4px;
+    margin-top: 12px;
+    padding: 4px;
+    transition: 0.3s;
+}
+
+#subheader button:hover {
+    background: rgba(0, 128, 0, 0.5);
+    cursor: pointer;
+}
+
+#subheader button:focus {
+    outline: none;
+    box-shadow: inset 1px 1px 1px 2px rgba(0, 120, 0, 0.5);
+    cursor: pointer;
+}
+
+#detail {
+    float: left;
+    width: 70%;
+    margin-right: -220px;
+    overflow: hidden;
+}
+
+.item {
+    padding: 5px;
+}
+
+#content {
+    padding: 0 80px;
+    overflow: hidden;
+}
+
+#sidebar {
+    width: 220px;
+    padding: 30px 20px 0 0;
+    float: left;
+    border-right: 1px #cccccc solid;
+}
+
+#sidebar ul {
+    margin: 0;
+    padding: 0;
+}
+
+#sidebar ul li {
+    margin: 4px;
+    list-style: none;
+    padding: 5px 5px;
+}
+
+#sidebar ul li a {
+    display: block;
+}
+
+#sidebar ul li.selected {
+    color: #1b6d32;
+    font-weight: bold;
+}
+
+#sidebar ul li.selected a {
+    color: #1b6d32;
+    font-weight: bold;
+}
+
+#main {
+    float: left;
+    width: 70%;
+    margin-right: -220px;
+    overflow: hidden;
+}

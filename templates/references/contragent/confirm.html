@@ -1,0 +1,24 @@
+{% extends "reference.html" %}
+{% block title %}
+    Удаление элемента
+{% endblock %}
+{% block subheader %}
+    <h2 class="refname">Контрагент</h2>
+{% endblock %}
+{% block detail %}
+    {% if error == 1 %}
+        <h2> Сначала удалите все записи, ссылающиеся на этот элемент</h2>
+        <form action="{% url 'references:contragent_list' %}">
+            <button> Закрыть</button>
+        </form>
+    {% else %}
+        <h2> Вы действительно хотите удалить запись?</h2>
+        <p>{{ object }}</p>
+        <form action="" method="post">
+            {% csrf_token %}
+            <button name="confirm_delete" value="Confirm deletion"> Удалить
+            </button>
+            <button name="cancel" value="Cancel"> Отмена!</button>
+        </form>
+    {% endif %}
+{% endblock %}

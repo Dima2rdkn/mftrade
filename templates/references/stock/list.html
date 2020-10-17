@@ -1,0 +1,23 @@
+{% extends "simple_list.html" %}
+{% block title %}
+    Склады
+{% endblock %}
+
+{% block subheader %}
+    <h2 class="refname">Справочник Склады</h2>
+    <form action="{% url "references:stock_new" %}">
+        <button> +Элемент</button>
+    </form>
+    <p class="separator"></p>
+    <form action="{% url "references:main" %}">
+        <button> Закрыть</button>
+    </form>
+{% endblock %}
+
+{% block detail %}
+    {% for obj in object_list %}
+        <div class="item">
+            <a href="{{ obj.get_absolute_url }}">{{ obj }}</a>
+        </div>
+    {% endfor %}
+{% endblock %}

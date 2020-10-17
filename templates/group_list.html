@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+    <div id="subheader">
+        {% block subheader %}
+        {% endblock %}
+    </div>
+    <div id='sidebar'>
+        {% block menu %}
+        {% endblock %}
+    </div>
+    <div id="detail">
+        {% block detail %}
+        {% endblock %}
+    </div>
+{% endblock %}

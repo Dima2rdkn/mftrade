@@ -1,0 +1,48 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}MamaykaFlowers{% endblock %}</title>
+    <link type="text/css" href="{% static "css/base.css" %}" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png"
+          href="{% static "favicon.ico" %}">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript" src="{% static "js/check.js" %}"></script>
+    {% block additional_css %}
+    {% endblock %}
+</head>
+<body>
+<div id="header">
+    <span class="logo"> Mamayka Flowers </span>
+    <span class="user">
+                {% if request.user.is_authenticated %}
+                    {{ request.user.first_name }}
+                    <a href="{% url "logout" %}">Выход</a>
+                {% else %}
+                    <a href="{% url "login" %}">Войти</a>
+                {% endif %}
+            </span>
+    <span class="image">
+                <img src="{% static "img/no-avatar.png" %}" height="20"
+                     width="20">
+            </span>
+</div>
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li class="{{ message.tags }}">
+                {{ message|safe }}
+                <a href="#" class="close">x</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+<div id="content">
+    {% block content %}{% endblock %}
+</div>
+<div id="footer">
+    <p> (С)2020 D2RDKN-Studio Все права защищены.</p>
+</div>
+</body>
+</html>

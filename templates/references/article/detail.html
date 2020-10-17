@@ -1,0 +1,29 @@
+{% extends "group_list.html" %}
+{% block title %}
+    {% if article %}{{ article.title }}{% else %} Новый товар {% endif %}
+{% endblock %}
+{% block subheader %}
+    <h2 class="refname">Товары и услуги</h2>
+    <button name="Edit" form="form_article_edit"> Записать</button>
+    <button name="Close" form="form_article_edit"> Закрыть</button>
+    <p class="separator"></p>
+    <button name="Delete" form="form_article_edit"> Удалить</button>
+{% endblock %}
+{% block detail %}
+    <div class="product-detail">
+        {% if error == 1 %}
+            <h2> Сначала удалите все записи, ссылающиеся на этот товар</h2>
+            <form action="{{ article.get_absolute_url }}">
+                <button> Закрыть</button>
+            </form>
+        {% else %}
+            <form id="form_article_edit" action="." method="post"
+                  enctype="multipart/form-data">
+                <table>
+                    {{ form.as_table }}
+                    {% csrf_token %}
+                </table>
+            </form>
+        {% endif %}
+    </div>
+{% endblock %}

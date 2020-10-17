@@ -1,0 +1,37 @@
+{% extends "reference.html" %}
+{% block title %}
+    {% if contragent %}{{ contragent.title }}{% else %} Новый контрагент
+    {% endif %}
+{% endblock %}
+{% block subheader %}
+    <h2 class="refname">Контрагент</h2>
+    <button name="Edit" form="form_contragent_edit"> Записать</button>
+    <form action="{% url "references:contragent_list" %}">
+        <button name="Close"> Закрыть!</button>
+    </form>
+    <p class="separator"></p>
+    {% if contragent %}
+        <form action="{% url 'references:contragent_delete' pk=contragent.pk %}">
+            <button name="Delete"> Удалить</button>
+        </form>
+    {% endif %}
+
+
+{% endblock %}
+{% block detail %}
+    <div class="product-detail">
+        {% if error == 1 %}
+            <h2> Сначала удалите все записи, ссылающиеся на эту запись</h2>
+            <form action="{{ contragent.get_absolute_url }}">
+                <button> Закрыть</button>
+            </form>
+        {% else %}
+            <form id="form_contragent_edit" action="." method="post">
+                <table>
+                    {{ form.as_table }}
+                    {% csrf_token %}
+                </table>
+            </form>
+        {% endif %}
+    </div>
+{% endblock %}

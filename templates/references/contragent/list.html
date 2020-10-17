@@ -1,0 +1,23 @@
+{% extends "simple_list.html" %}
+{% block title %}
+    Контрагенты
+{% endblock %}
+
+{% block subheader %}
+    <h2 class="refname">Справочник Контрагенты</h2>
+    <form action="{% url "references:contragent_new" %}">
+        <button> +Контрагент</button>
+    </form>
+    <p class="separator"></p>
+    <form action="{% url "references:main" %}">
+        <button> Закрыть</button>
+    </form>
+{% endblock %}
+
+{% block detail %}
+    {% for cont in object_list %}
+        <div class="item">
+            <a href="{{ cont.get_absolute_url }}">{{ cont }}</a>
+        </div>
+    {% endfor %}
+{% endblock %}

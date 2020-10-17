@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1> Главная </h1>
+    <div id='sidebar'>
+        {% block menu %}
+        {% endblock %}
+    </div>
+    <div id="main">
+        {% block main %}
+        {% endblock %}
+    </div>
+{% endblock %}

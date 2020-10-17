@@ -1,0 +1,26 @@
+{% extends "group_list.html" %}
+{% block title %}
+    {% if group %}{{ group.title }}{% else %} Новая группа {% endif %}
+{% endblock %}
+{% block subheader %}
+    <h2 class="refname">Группы товаров</h2>
+    <button name="Edit" form="form_group_edit"> Записать</button>
+    <button name="Close" form="form_group_edit"> Закрыть</button>
+    <p class="separator"></p>
+    <button name="Delete" form="form_group_edit"> Удалить</button>
+{% endblock %}
+{% block detail %}
+    {% if error == 1 %}
+        <h2> Сначала удалите или перенесите товары из этой категории!</h2>
+        <form action="{{ group.get_absolute_url }}">
+            <button> Закрыть</button>
+        </form>
+    {% else %}
+        <form id="form_group_edit" action="." method="post">
+            <table>
+                {{ form.as_table }}
+                {% csrf_token %}
+            </table>
+        </form>
+    {% endif %}
+{% endblock %}

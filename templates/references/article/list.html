@@ -1,0 +1,58 @@
+{% extends "group_list.html" %}
+{% load static %}
+{% block title %}
+    {% if group %}{{ group.title }}{% else %} Товары {% endif %}
+{% endblock %}
+
+{% block subheader %}
+    <h2 class="refname">Справочник Товары</h2>
+    <form action="{% url "references:article_group_new" %}">
+        <button> +Группа</button>
+    </form>
+    <form action="{% url "references:article_new" %}">
+        <button> +Товар</button>
+    </form>
+    <p class="separator"></p>
+    <form action="{% url "references:main" %}">
+        <button> Закрыть</button>
+    </form>
+
+{% endblock %}
+
+{% block menu %}
+    <h3>Группы</h3>
+    <ul>
+        <li class="selected">
+            <a href="{% url "references:article_list" %}">
+                {% if group %}{{ group.title }}{% else %} Все {% endif %}</a>
+            <ul>
+                {% for g in groups %}
+                    {% if g.parent == group %}
+                        <li>
+                            <a href="{{ g.get_absolute_url }}">{{ g.title }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </li>
+    </ul>
+{% endblock %}
+{% block detail %}
+    {% if group %}
+        <h1>{{ group.title }}</h1>
+        <p>{{ group.description }}</p>
+    {% else %}
+        <h1> Товары </h1>
+    {% endif %}
+    {% for a in articles %}
+        <div class="item">
+            <a href="{{ a.get_absolute_url }}">
+                <img class="img-preview" src="{% if a.image %}{{ a.image.url }}
+            {% else %}{% static 'img/no-image.png' %}{% endif %}"
+                     width="50"
+                     alt="[x]">
+            </a>
+            <a href="{{ a.get_absolute_url }}">{{ a.title }}</a>
+        </div>
+    {% endfor %}
+{% endblock %}
