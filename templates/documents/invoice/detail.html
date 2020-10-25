@@ -1,0 +1,45 @@
+{% extends "simple_list.html" %}
+{% load static %}
+{% block title %}
+    {% if object %}{{ object.title }}{% else %} Новый документ' {% endif %}
+    {% block additional_css %}
+        <script type="text/javascript" src={% static "js/scripts.js" %}></script>
+    {% endblock %}
+{% endblock %}
+{% block subheader %}
+    <h2 class="refname">Инвентаризация</h2>
+    <button name="Edit" form="form_edit"> Записать</button>
+    <form action="{% url "documents:inventory" %}">
+        <button name="Close"> Закрыть!</button>
+    </form>
+    <p class="separator"></p>
+    {% if object %}
+        <form action="{% url 'documents:inventory_delete' pk=object.pk %}">
+            <button name="Delete"> Удалить</button>
+        </form>
+    {% endif %}
+
+{% endblock %}
+{% block detail %}
+    <h2>Заголовок</h2>
+    <script type="text/html" id="item-template">
+        <div id="item-__prefix__">
+            {{ invoicetable.forms.empty_form }}
+        </div>
+    </script>
+    <form action="" method="post">
+        {{ form.as_p }}
+        {% csrf_token %}
+        {{ invoicetable.management_form }}
+        <div id="items-form-container">
+            {% for item_form in invoicetable.forms %}
+                <div id="item-{{ forloop.counter }}">
+                    {{ item_form.id }}
+                    {{ item_form.errors.as_ul }}
+                    {{ item_form.as_p }}
+                </div>
+            {% endfor %}
+        </div>
+    </form>
+    <button id="add-item-button" class="btn btn-info add-item">Добавить</button>
+{% endblock %}
