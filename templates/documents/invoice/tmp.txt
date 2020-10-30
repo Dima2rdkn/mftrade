@@ -1,0 +1,91 @@
+<form id="form_edit" action="." method="post">
+                <table>
+                    {{ form.as_table }}
+                    {% csrf_token %}
+                    <table>
+                        {{ invoicetable.management_form }}
+                        {% for tform in invoicetable.forms %}
+                            {% if forloop.first %}
+                                <thead>
+                                    <tr>
+                                        {% for field in tform.visible_fields %}
+                                            <th>{{ field.label|capfirst }}</th>
+                                        {% endfor %}
+                                    </tr>
+                                </thead>
+                            {% endif %}
+                            <tr>
+                                {% for field in tform.visible_fields %}
+                                    <td>
+                                        {# Include the hidden fields in the form #}
+                                        {% if forloop.first %}
+                                            {% for hidden in form.hidden_fields %}
+                                                {{ hidden }}
+                                            {% endfor %}
+                                        {% endif %}
+                                        {{ field.errors.as_ul }}
+                                        {{ field }}
+                                    </td>
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </table>
+            <a href="#" id="add-form-button" class="btn btn-form add-form">Добавить</a>
+            </form>
+
+
+
+
+
+
+
+{% extends "simple_list.html" %}
+{% load static %}
+{% block title %}
+    {% if object %}{{ object.title }}{% else %} Новый документ' {% endif %}
+    {% block additional_css %}
+        <script type="text/javascript" src={% static "js/scripts.js" %}></script>
+    {% endblock %}
+{% endblock %}
+{% block subheader %}
+    <h2 class="refname">Инвентаризация</h2>
+    <button name="Edit" form="form_edit"> Записать</button>
+    <form action="{% url "documents:inventory" %}">
+        <button name="Close"> Закрыть!</button>
+    </form>
+    <p class="separator"></p>
+    {% if object %}
+        <form action="{% url 'documents:inventory_delete' pk=object.pk %}">
+            <button name="Delete"> Удалить</button>
+        </form>
+    {% endif %}
+
+{% endblock %}
+{% block detail %}
+        {% if error == 1 %}
+            <h2> Сначала удалите все записи, ссылающиеся на эту запись</h2>
+            <form action="{{ object.get_absolute_url }}">
+                <button> Закрыть</button>
+            </form>
+        {% else %}
+            <script type="text/html" id="item-template">
+            <div id="item-__prefix__">
+                {{ item_forms.empty_form }}
+            </div>
+            </script>
+            <form action="" method="post">
+            {% csrf_token %}
+            {{ item_forms.management_form }}
+            <div id="items-form-container">
+                {% for item_form in item_forms %}
+                    <div id="item-{{ forloop.counter0 }}">
+                        {{ item_form.id }}
+                        {{ item_form.as_p }}
+                    </div>
+                {% endfor %}
+            </div>
+            <a href="#" id="add-item-button" class="btn btn-info add-item">Add Item</a>
+            </form>
+        {% endif %}
+{% endblock %}

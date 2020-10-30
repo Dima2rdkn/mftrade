@@ -1,0 +1,30 @@
+{% extends "group_list.html" %}
+{% block title %}Документы{% endblock %}
+{% block subheader %}
+    <h2 class="refname">Документы</h2>
+    <form action="{% url "main" %}">
+        <button> Главная</button>
+    </form>
+{% endblock %}
+{% block menu %}
+    <ul>
+        <li>
+            <a href="inventory/">Инвентаризация</a>
+        </li>
+        <li>
+            <a href="#">Приемка</a>
+        </li>
+        <li>
+            <a href="#">Комплектация</a>
+        </li>
+        <li>
+            <a href="#">Продажи</a>
+        </li>
+        <li>
+            <a href="#">Разукомплектация</a>
+        </li>
+        <li>
+            <a href="#">Списание</a>
+        </li>
+    </ul>
+{% endblock %}

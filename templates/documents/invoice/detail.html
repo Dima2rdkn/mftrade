@@ -1,10 +1,10 @@
 {% extends "simple_list.html" %}
 {% load static %}
 {% block title %}
-    {% if object %}{{ object.title }}{% else %} Новый документ' {% endif %}
-    {% block additional_css %}
+    {% if object %}{{ object.title }}{% else %} Новый документ {% endif %}
+{% endblock %}
+{% block additional_css %}
         <script type="text/javascript" src={% static "js/scripts.js" %}></script>
-    {% endblock %}
 {% endblock %}
 {% block subheader %}
     <h2 class="refname">Инвентаризация</h2>
@@ -22,21 +22,23 @@
 {% endblock %}
 {% block detail %}
     <h2>Заголовок</h2>
+    {{ invoicetable.management_form }}
     <script type="text/html" id="item-template">
         <div id="item-__prefix__">
-            {{ invoicetable.forms.empty_form }}
+            {{ invoicetable.empty_form.as_table }}
         </div>
     </script>
     <form action="" method="post">
-        {{ form.as_p }}
+        <table>
+        {{ form.as_table }}
         {% csrf_token %}
-        {{ invoicetable.management_form }}
+        </table>
         <div id="items-form-container">
             {% for item_form in invoicetable.forms %}
-                <div id="item-{{ forloop.counter }}">
+                <div id="item-{{ forloop.counter0 }}">
                     {{ item_form.id }}
                     {{ item_form.errors.as_ul }}
-                    {{ item_form.as_p }}
+                    {{ item_form.as_table }}
                 </div>
             {% endfor %}
         </div>

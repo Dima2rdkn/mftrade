@@ -44,7 +44,7 @@ class Invoice(models.Model):
         return 'Накладная № {} от {}'.format(self.number, self.invoice_date)
 
     def get_absolute_url(self):
-        return reverse('documents:stock_detail',
+        return reverse('documents:inventory_detail',
                        kwargs={'pk': self.pk})
 
 

@@ -14,7 +14,7 @@
         </li>
         {% url "documents" as page_url %}
         <li>
-            <a href="#" {% if page_url == current_url %}
+            <a href="/documents/" {% if page_url == current_url %}
                class="current" {% endif %}>Документы</a>
         </li>
         {% url "reports" as page_url %}

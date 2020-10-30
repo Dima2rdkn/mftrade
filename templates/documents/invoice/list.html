@@ -1,0 +1,27 @@
+{% extends "simple_list.html" %}
+{% block title %}
+    Инвентаризация
+{% endblock %}
+
+{% block subheader %}
+    <h2 class="refname">Документы Инвентаризация</h2>
+    <form action="{% url "documents:inventory_new" %}">
+        <button> +Документ</button>
+    </form>
+    <p class="separator"></p>
+    <form action="{% url "documents:main" %}">
+        <button> Закрыть</button>
+    </form>
+{% endblock %}
+
+{% block detail %}
+    {% for doc in object_list %}
+        <div class="item">
+            <a href="{{ doc.get_absolute_url }}">{{ doc }}</a>
+        </div>
+    {% empty %}
+        <div class="item">
+            <p>Документы отсутствуют</p>
+        </div>
+    {% endfor %}
+{% endblock %}
